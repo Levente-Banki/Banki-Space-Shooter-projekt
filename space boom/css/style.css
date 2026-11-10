@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Redaction+35:ital,wght@0,400;0,700;1,400&display=swap');
+body{
+  font-family: "Redaction 35", serif;
+  font-weight: 400;
+  font-style: normal;
+  padding: 0;
+  margin: 0;
+}
+header{
+    position: absolute;
+    z-index: 2;
+    color: #fff;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+h1{
+    margin: 0;
+}
+.gameArea{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../asset/space.bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.middleMenu img{
+    width: 180px;
+}
+.play img{
+    width: 250px;
+}
+.middleMenu, .bottomMenu{
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    align-items: center;
+}
+.bottomMenu img{
+    width: 120px;
+    margin: 20px;
+    margin-top: 0;
+}
+img{
+    transition: 0.8s;
+}
+.bottomMenu{
+    align-items: end;
+    height: 100%;
+    gap: 0px;
+}
+.rightRotate:hover{
+    transition: 0.8s;
+    transform: rotate(7deg);
+}
+.leftRotate:hover{
+    transition: 0.8s;   
+    transform: rotate(-7deg);
+}
+h2, h3{
+    margin: 0;
+}
+.title img{
+    width: 700px;
+}
