@@ -1,63 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Space boom</title>
+    <link rel="icon" type="image/x-icon" href="asset/explosion_img.png">
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>    
 </head>
+
 <body>
     <header>
-        <div class="title">
-            <img src="asset/TitleLogo.png" alt="">
-            <h1>
-                Best score: --
-            </h1>
-        </div>
-        <div class="middleMenu">
-            <div class="difficulty ">
-                <img src="asset/button_difficulty.png" class="leftRotate" alt="">
-                <h2>
-                    Difficulty
+        <section class="main_menu">
+            <div class="title">
+                <img src="asset/TitleLogo.png" alt="">
+                <h1>
+                    Best score: - <span class="best_score"></span> -
+                </h1>
+            </div>
+            <div class="middleMenu">
+                <div class="difficulty hoverCursor">
+                    <img src="asset/button_difficulty.png" class="leftRotate" alt="">
+                    <h2>
+                        Difficulty
+                    </h2>
+                </div>
+                <div class="play hoverCursor">
+                    <img src="asset/button_play.png" class="rightRotate" alt="">
+                    <h2>
+                        Play now
+                    </h2>
+                </div>
+                <div class="shop hoverCursor">
+                    <img src="asset/button_shop.png" class="rightRotate" alt="">
+                    <h2>
+                        Shop
+                    </h2>
+                </div>
+            </div>
+            <div class="bottomMenu">
+                <div class="rules hoverCursor">
+                    <h3>
+                        Rules
+                    </h3>
+                    <img src="asset/button_rules.png" class="leftRotate" alt="">
+                </div>
+                <div class="credits hoverCursor">
+                    <h3>
+                        Credits
+                    </h3>
+                    <img src="asset/button_credits.png" class="leftRotate" alt="">
+                </div>
+                <div class="settings hoverCursor">
+                    <h3>
+                        Settings
+                    </h3>
+                    <img src="asset/button_settings.png" class="rightRotate" alt="">
+                </div>
+            </div>
+        </section>
+
+        <section class="shop_menu no_show">
+            <div class="title">
+                <img src="asset/TitleLogo.png" alt="">
+                <h2 class="money_text">
+                    Money: - <span class="money_value"></span> -
                 </h2>
             </div>
-            <div class="play">
-                <img src="asset/button_play.png" class="rightRotate" alt="">
+            <div class="middleMenu shop_items">
+                <div class="extra_heart hoverCursor">
+                    <img src="asset/button_heart.png" class="leftRotate" alt="">
+                    <h2>
+                        Extra Heart : <span class="heart_cost"></span>
+                    </h2>
+                </div>
+                <div class="atom_bomb  hoverCursor">
+                    <img src="asset/button_atom_bomb.png" class="rightRotate" alt="">
+                    <h2>
+                        Big Bomb : <span class="bomb_cost"></span>
+                    </h2>
+                </div>
+            </div>
+            <div class="back_to_menu_from_shop hoverCursor">
                 <h2>
-                    Play now
+                    Back to menu
                 </h2>
             </div>
-            <div class="shop">
-                <img src="asset/button_shop.png" class="rightRotate" alt="">
+            <div class="bottomMenu">
+                <div class="rules hoverCursor">
+                    <h3>
+                        Rules
+                    </h3>
+                    <img src="asset/button_rules.png" class="leftRotate" alt="">
+                </div>
+                <div class="credits hoverCursor">
+                    <h3>
+                        Credits
+                    </h3>
+                    <img src="asset/button_credits.png" class="leftRotate" alt="">
+                </div>
+                <div class="settings hoverCursor">
+                    <h3>
+                        Settings
+                    </h3>
+                    <img src="asset/button_settings.png" class="rightRotate" alt="">
+                </div>
+            </div>
+        </section>
+
+        <section class="difficulty_menu no_show">
+            <div class="title">
+                <img src="asset/TitleLogo.png" alt="">
+            </div>
+
+            <div id="carouselExample" class="carousel slide mt-5 pt-5 w-25">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div>
+                            <img src="asset/difficulti_img_easy.png" class="w-25" alt="">
+                            <h3>Easy</h3>
+                        </div>
+                    </div>
+                    <div class="carousel-item ">
+                        <div>
+                            <img src="asset/difficulti_img_medium.png" class="w-25" alt="">
+                            <h3>Medium</h3>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div>
+                            <img src="asset/difficulti_img_hard.png" class="w-25" alt="">
+                            <h3>Hard</h3>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+            <div class="back_to_menu_from_difficulty hoverCursor">
                 <h2>
-                    Shop
+                    Back to menu
                 </h2>
             </div>
-        </div>
-        <div class="bottomMenu">
-            <div>
-                <h3>
-                    Rules
-                </h3>
-                <img src="asset/button_rules.png" class="leftRotate" alt="">
+            <div class="bottomMenu">
+                <div class="rules hoverCursor">
+                    <h3>
+                        Rules
+                    </h3>
+                    <img src="asset/button_rules.png" class="leftRotate" alt="">
+                </div>
+                <div class="credits hoverCursor">
+                    <h3>
+                        Credits
+                    </h3>
+                    <img src="asset/button_credits.png" class="leftRotate" alt="">
+                </div>
+                <div class="settings hoverCursor">
+                    <h3>
+                        Settings
+                    </h3>
+                    <img src="asset/button_settings.png" class="rightRotate" alt="">
+                </div>
             </div>
-            <div>
-                <h3>
-                    Credits
-                </h3>
-                <img src="asset/button_credits.png" class="leftRotate" alt="">
-            </div>
-            <div>
-                <h3>
-                    Settings
-                </h3>
-                <img src="asset/button_settings.png" class="rightRotate" alt="">
-            </div>
-        </div>
+        </section>
+
     </header>
     <main>
         <section class="gameArea">
-            
+
         </section>
     </main>
     <footer>
@@ -65,4 +186,5 @@
     </footer>
     <script src="js/script.js"></script>
 </body>
+
 </html>
