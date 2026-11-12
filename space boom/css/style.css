@@ -1,12 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Redaction+35:ital,wght@0,400;0,700;1,400&display=swap');
-body{
-  font-family: "Redaction 35", serif;
-  font-weight: 400;
-  font-style: normal;
-  padding: 0;
-  margin: 0;
+
+body {
+    font-family: "Redaction 35", serif;
+    font-weight: 400;
+    font-style: normal;
+    padding: 0;
+    margin: 0;
 }
-.main_menu, .shop_menu, .difficulty_menu{
+
+.main_menu,
+.shop_menu,
+.difficulty_menu {
     position: absolute;
     color: #fff;
     z-index: 2;
@@ -18,13 +22,17 @@ body{
     flex-direction: column;
     text-align: center;
 }
-.money_text{
+
+.money_text {
     font-size: 30px;
 }
-h1, .money_text{
+
+h1,
+.money_text {
     margin: 0;
 }
-.gameArea{
+
+.gameArea {
     position: relative;
     width: 100vw;
     height: 100vh;
@@ -32,55 +40,94 @@ h1, .money_text{
     background-repeat: no-repeat;
     background-size: cover;
 }
-.middleMenu img{
+
+.middleMenu img {
     width: 180px;
 }
-.play img, .shop_items img{
+
+.play img,
+.shop_items img {
     width: 250px;
 }
-.middleMenu, .bottomMenu{
+
+.middleMenu,
+.bottomMenu {
     display: flex;
     justify-content: center;
     gap: 100px;
     align-items: center;
 }
-.bottomMenu img{
+
+.bottomMenu img {
     width: 120px;
     margin: 20px;
     margin-top: 0;
 }
-img{
+
+img {
     transition: 0.8s;
 }
-.bottomMenu{
+
+.bottomMenu {
     align-items: end;
     height: 100%;
     max-height: 337px;
     gap: 0px;
 }
-.rightRotate:hover{
+
+.rightRotate:hover {
     transition: 0.5s;
     transform: rotate(7deg);
 }
-.leftRotate:hover{
-    transition: 0.5s;   
+
+.leftRotate:hover {
+    transition: 0.5s;
     transform: rotate(-7deg);
 }
-h2, h3{
+
+h2,
+h3 {
     margin: 0;
 }
-.title img{
+
+.title img {
     width: 700px;
 }
-.back_to_menu_from_shop, .back_to_menu_from_difficulty{
+
+.back_to_menu_from_shop, .back_to_menu_from_difficulty {
     margin-top: 50px;
 }
-.hoverCursor:hover{
+
+.hoverCursor:hover {
     cursor: pointer;
 }
-.no_show{
+
+.no_show {
     display: none;
 }
-.carousel-item div{
+
+.carousel-item div {
     min-width: 200;
+}
+
+.enemy, .player {
+    width: 150px;
+    height: 150px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+}
+
+.enemy {
+    background-image: url(../asset/ship_enemy.png);
+
+}
+
+.player {
+    background-image: url(../asset/ship_player.png);
+}
+
+.boom{
+    background-image: url(../asset/explosion_img.png);
 }
