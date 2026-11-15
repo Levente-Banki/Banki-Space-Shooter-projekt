@@ -51,12 +51,6 @@ document.querySelectorAll(".click").forEach(button => {
     });
 });
 
-document.querySelectorAll(".click").forEach(button => {
-    button.addEventListener("click", () => {
-        document.querySelector(".s_click").play()
-    });
-});
-
 
 document.querySelector(".play").addEventListener("click", () => {
     gameOn()
@@ -67,14 +61,20 @@ document.querySelector(".difficulty").addEventListener("click", () => {
 document.querySelector(".shop").addEventListener("click", () => {
     shop_show_up()
 })
-document.querySelector(".rules").addEventListener("click", () => {
-    rule_show_up()
+document.querySelectorAll(".rules").forEach(button => {
+    button.addEventListener("click", () => {
+        rule_show_up()
+    })
 })
-document.querySelector(".credits").addEventListener("click", () => {
-    credits_show_up()
+document.querySelectorAll(".credits").forEach(button => {
+    button.addEventListener("click", () => {
+        credits_show_up()
+    })
 })
-document.querySelector(".settings").addEventListener("click", () => {
-    settings_show_up()
+document.querySelectorAll(".settings").forEach(button => {
+    button.addEventListener("click", () => {
+        settings_show_up()
+    })
 })
 
 
@@ -119,28 +119,46 @@ function difficulty_close() {
     document.querySelector(".main_menu").classList.remove("no_show")
     document.querySelector(".difficulty_menu").classList.add("no_show")
 }
+var menu_before = ".main_menu";
+
+// remembers which menu is open right now, so "Back" returns to it
+function remember_menu() {
+    if (!document.querySelector(".main_menu").classList.contains("no_show")) {
+        menu_before = ".main_menu";
+    }
+    if (!document.querySelector(".shop_menu").classList.contains("no_show")) {
+        menu_before = ".shop_menu";
+    }
+    if (!document.querySelector(".difficulty_menu").classList.contains("no_show")) {
+        menu_before = ".difficulty_menu";
+    }
+}
+
 function settings_show_up() {
-    document.querySelector(".main_menu").classList.add("no_show")
+    remember_menu()
+    document.querySelector(menu_before).classList.add("no_show")
     document.querySelector(".settings_menu").classList.remove("no_show")
 }
 function settings_close() {
-    document.querySelector(".main_menu").classList.remove("no_show")
+    document.querySelector(menu_before).classList.remove("no_show")
     document.querySelector(".settings_menu").classList.add("no_show")
 }
 function credits_show_up() {
-    document.querySelector(".main_menu").classList.add("no_show")
+    remember_menu()
+    document.querySelector(menu_before).classList.add("no_show")
     document.querySelector(".credits_menu").classList.remove("no_show")
 }
 function credits_close() {
-    document.querySelector(".main_menu").classList.remove("no_show")
+    document.querySelector(menu_before).classList.remove("no_show")
     document.querySelector(".credits_menu").classList.add("no_show")
 }
 function rule_show_up() {
-    document.querySelector(".main_menu").classList.add("no_show")
+    remember_menu()
+    document.querySelector(menu_before).classList.add("no_show")
     document.querySelector(".rule_menu").classList.remove("no_show")
 }
 function rule_close() {
-    document.querySelector(".main_menu").classList.remove("no_show")
+    document.querySelector(menu_before).classList.remove("no_show")
     document.querySelector(".rule_menu").classList.add("no_show")
 }
 

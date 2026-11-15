@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Redaction+35:ital,wght@0,400;0,700;1,400&display=swap');
 
-body {
+body, header {
     font-family: "Redaction 35", serif;
     font-weight: 400;
     font-style: normal;
@@ -135,4 +135,24 @@ h3 {
 }
 .music_setting{
     width: 40%;
+}
+
+.rule_menu .carousel-control-prev,
+.rule_menu .carousel-control-next {
+    opacity: 1;
+}
+
+.rule_menu .carousel-control-prev-icon,
+.rule_menu .carousel-control-next-icon {
+    width: 4rem;
+    height: 4rem;
+    background-size: 100% 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    padding: 10px;
+}
+
+.rule_menu .carousel-control-prev-icon:hover,
+.rule_menu .carousel-control-next-icon:hover {
+    background-color: rgba(255, 255, 255, 0.3);
 }
