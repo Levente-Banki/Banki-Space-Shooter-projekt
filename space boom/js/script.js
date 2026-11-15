@@ -20,6 +20,13 @@ function refresh_web() {
     document.querySelector(".heart_cost").innerHTML = cost_calc()[0];
     document.querySelector(".bomb_cost").innerHTML = cost_calc()[1];
 
+    document.querySelector(".background_music").volume = 0.3;
+
+    document.querySelector(".s_click").volume = 0.3;
+    document.querySelector(".s_expload").volume = 0.3;
+    document.querySelector(".s_buy").volume = 0.3;
+    document.querySelector(".s_error").volume = 0.3;
+    document.querySelector(".s_laser").volume = 0.3;
 
 
 
@@ -38,6 +45,18 @@ function cost_calc() {
 }
 
 
+document.querySelectorAll(".click").forEach(button => {
+    button.addEventListener("click", () => {
+        document.querySelector(".s_click").play()
+    });
+});
+
+document.querySelectorAll(".click").forEach(button => {
+    button.addEventListener("click", () => {
+        document.querySelector(".s_click").play()
+    });
+});
+
 
 document.querySelector(".play").addEventListener("click", () => {
     gameOn()
@@ -49,20 +68,39 @@ document.querySelector(".shop").addEventListener("click", () => {
     shop_show_up()
 })
 document.querySelector(".rules").addEventListener("click", () => {
-
+    rule_show_up()
 })
 document.querySelector(".credits").addEventListener("click", () => {
-
+    credits_show_up()
 })
 document.querySelector(".settings").addEventListener("click", () => {
-
+    settings_show_up()
 })
+
 
 document.querySelector(".back_to_menu_from_shop").addEventListener("click", () => {
     shop_close()
 })
 document.querySelector(".back_to_menu_from_difficulty").addEventListener("click", () => {
     difficulty_close()
+})
+document.querySelector(".back_to_menu_from_settings").addEventListener("click", () => {
+    settings_close()
+
+    document.querySelector(".background_music").volume = document.querySelector(".bg_music input").value;
+
+    document.querySelector(".s_click").volume = document.querySelector(".sound_effects input").value;
+    document.querySelector(".s_expload").volume = document.querySelector(".sound_effects input").value;
+    document.querySelector(".s_buy").volume = document.querySelector(".sound_effects input").value;
+    document.querySelector(".s_error").volume = document.querySelector(".sound_effects input").value;
+    document.querySelector(".s_laser").volume = document.querySelector(".sound_effects input").value;
+
+})
+document.querySelector(".back_to_menu_from_credits").addEventListener("click", () => {
+    credits_close()
+})
+document.querySelector(".back_to_menu_from_rules").addEventListener("click", () => {
+    rule_close()
 })
 
 function shop_show_up() {
@@ -80,6 +118,30 @@ function difficulty_show_up() {
 function difficulty_close() {
     document.querySelector(".main_menu").classList.remove("no_show")
     document.querySelector(".difficulty_menu").classList.add("no_show")
+}
+function settings_show_up() {
+    document.querySelector(".main_menu").classList.add("no_show")
+    document.querySelector(".settings_menu").classList.remove("no_show")
+}
+function settings_close() {
+    document.querySelector(".main_menu").classList.remove("no_show")
+    document.querySelector(".settings_menu").classList.add("no_show")
+}
+function credits_show_up() {
+    document.querySelector(".main_menu").classList.add("no_show")
+    document.querySelector(".credits_menu").classList.remove("no_show")
+}
+function credits_close() {
+    document.querySelector(".main_menu").classList.remove("no_show")
+    document.querySelector(".credits_menu").classList.add("no_show")
+}
+function rule_show_up() {
+    document.querySelector(".main_menu").classList.add("no_show")
+    document.querySelector(".rule_menu").classList.remove("no_show")
+}
+function rule_close() {
+    document.querySelector(".main_menu").classList.remove("no_show")
+    document.querySelector(".rule_menu").classList.add("no_show")
 }
 
 function gameOn() {
@@ -99,6 +161,7 @@ function gameOn() {
     }
 
 }
+
 
 function enemy_wave() {
     for (let i = 0; i < difficulty; i++) {

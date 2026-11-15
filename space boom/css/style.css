@@ -8,9 +8,7 @@ body {
     margin: 0;
 }
 
-.main_menu,
-.shop_menu,
-.difficulty_menu {
+.main_menu, .shop_menu, .difficulty_menu, .settings_menu,  .credits_menu, .rule_menu{
     position: absolute;
     color: #fff;
     z-index: 2;
@@ -21,6 +19,10 @@ body {
     align-items: center;
     flex-direction: column;
     text-align: center;
+}
+.settings_menu, .credits_menu, .rule_menu{
+    top: 0;
+    left: 0;
 }
 
 .money_text {
@@ -94,7 +96,7 @@ h3 {
     width: 700px;
 }
 
-.back_to_menu_from_shop, .back_to_menu_from_difficulty {
+.back {
     margin-top: 50px;
 }
 
@@ -130,4 +132,7 @@ h3 {
 
 .boom{
     background-image: url(../asset/explosion_img.png);
+}
+.music_setting{
+    width: 40%;
 }
