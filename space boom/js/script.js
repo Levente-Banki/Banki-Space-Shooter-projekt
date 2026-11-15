@@ -121,7 +121,6 @@ function difficulty_close() {
 }
 var menu_before = ".main_menu";
 
-// remembers which menu is open right now, so "Back" returns to it
 function remember_menu() {
     if (!document.querySelector(".main_menu").classList.contains("no_show")) {
         menu_before = ".main_menu";
@@ -134,9 +133,16 @@ function remember_menu() {
     }
 }
 
+function hide_sub_menus() {
+    document.querySelector(".settings_menu").classList.add("no_show")
+    document.querySelector(".credits_menu").classList.add("no_show")
+    document.querySelector(".rule_menu").classList.add("no_show")
+}
+
 function settings_show_up() {
     remember_menu()
     document.querySelector(menu_before).classList.add("no_show")
+    hide_sub_menus()
     document.querySelector(".settings_menu").classList.remove("no_show")
 }
 function settings_close() {
@@ -146,6 +152,7 @@ function settings_close() {
 function credits_show_up() {
     remember_menu()
     document.querySelector(menu_before).classList.add("no_show")
+    hide_sub_menus()
     document.querySelector(".credits_menu").classList.remove("no_show")
 }
 function credits_close() {
@@ -155,6 +162,7 @@ function credits_close() {
 function rule_show_up() {
     remember_menu()
     document.querySelector(menu_before).classList.add("no_show")
+    hide_sub_menus()
     document.querySelector(".rule_menu").classList.remove("no_show")
 }
 function rule_close() {
@@ -211,3 +219,16 @@ document.addEventListener("keydown", (event) => {
 
 
 refresh_web()
+
+
+document.querySelectorAll(".side_toggle").forEach(button => {
+    button.addEventListener("click", () => {
+        button.parentElement.querySelector(".sidebar").classList.toggle("sidebar_open")
+    })
+})
+
+document.querySelectorAll(".sidebar .click").forEach(item => {
+    item.addEventListener("click", () => {
+        item.parentElement.classList.remove("sidebar_open")
+    })
+})
