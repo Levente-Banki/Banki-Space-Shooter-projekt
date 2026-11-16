@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Redaction+35:ital,wght@0,400;0,700;1,400&display=swap');
 
-body {
+body, header,main, footer {
     font-family: "Redaction 35", serif;
     font-weight: 400;
     font-style: normal;
@@ -137,58 +137,6 @@ h3 {
     width: 40%;
 }
 
-.rule_menu .carousel-control-prev,
-.rule_menu .carousel-control-next {
-    opacity: 1;
-}
-
-.rule_menu .carousel-control-prev-icon,
-.rule_menu .carousel-control-next-icon {
-    width: 4rem;
-    height: 4rem;
-    background-size: 100% 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 50%;
-    padding: 10px;
-}
-
-.rule_menu .carousel-control-prev-icon:hover,
-.rule_menu .carousel-control-next-icon:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-}
-
-
-.title h1 {
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #ffd84d;
-    text-shadow: 0 0 8px #000, 0 0 16px #000, 2px 2px 0 #000;
-    letter-spacing: 1px;
-    margin-top: 10px;
-}
-
-.title h1 .best_score {
-    color: #fff;
-}
-
-.back h2 {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #fff;
-    text-decoration: underline;
-}
-
-
-.projectile {
-    position: absolute;
-    width: 96px;
-    height: 96px;
-    background-image: url(../asset/friendly_projectile.png);
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-
 .hud {
     position: absolute;
     top: 10px;
@@ -196,14 +144,62 @@ h3 {
     z-index: 1;
     color: #fff;
     text-align: left;
-    text-shadow: 2px 2px 0 #000;
+}
+.dif_mini_icon{
+    width: 30px;
+    height: 32px;
+}
+.bullet {
+    position: absolute;
+    width: 10px;
+    height: 30px;
+    border-radius: 3px;
+    z-index: 1;
 }
 
-.hud h3 {
-    font-size: 1.2rem;
+.player_bullet {
+    background-color: #4FC9B1;
 }
 
+.enemy_bullet {
+    background-color: #CF2121;
+}
 .game_over_menu .title h2 {
     font-size: 3rem;
     margin-top: 10px;
+}
+.score_display{
+    color: #fff99f;
+    font-size: 45px;
+}
+
+.player.revive_active {
+    filter: drop-shadow(0 0 15px #fff99f) drop-shadow(0 0 30px #4FC9B1);
+}
+
+.ability {
+    position: absolute;
+    bottom: 20px;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+    user-select: none;
+}
+.ability.no_show {
+    display: none;
+}
+.ability img {
+    width: 120px;
+}
+.ability_left {
+    left: 20px;
+}
+.ability_right {
+    right: 20px;
+}
+.ability.armed img {
+    filter: drop-shadow(0 0 10px #fff99f);
 }

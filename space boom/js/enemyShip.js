@@ -7,6 +7,8 @@ class enemyShip {
     #speed;
     #moveInterval;
     #moveDirection
+    #shootInterval;
+    #death = false;
 
     constructor(x, y, hp, speed, direction, container) {
         this.setX(x);
@@ -40,6 +42,33 @@ class enemyShip {
         this.#moveDirection = direction;
     }
 
+    getElement() {
+        return this.#element;
+    }
+
+    takeDamage(dmg) {
+        this.#hp -= dmg;
+        if (this.#hp <= 0 && !this.#death) {
+            if (difficulty == 1) {
+                addScore(100);
+            } else if (difficulty == 2) {
+                addScore(125);
+            } else if (difficulty == 3) {
+                addScore(150);
+            }
+            this.destroy();
+        }
+    }
+
+    shoot() {
+        new Bullet(
+            this.#x + this.#element.offsetWidth / 2 - 5,
+            this.#y + this.#element.offsetHeight,
+            6, 1, 1, "player", this.#container
+        );
+    }
+
+
     createShip() {
         this.#element = document.createElement("div");
         this.#element.style.top = this.#y + "px"
@@ -51,23 +80,29 @@ class enemyShip {
     }
 
     move() {
+        this.#shootInterval = setInterval(() => this.shoot(), 1000);
         this.#moveInterval = setInterval(() => {
+            var maxX = (this.#container.offsetWidth * 0.95) - (this.#element.offsetWidth);
+
+            if (this.#x > maxX) {
+                this.#x = maxX;
+            }
+
             if (!this.#moveDirection) {
-                if (this.#x > (this.#container.offsetWidth * 0.1)) {
-                    this.#x -= this.#speed
+                if (this.#x > (this.#container.offsetWidth * 0.05)) {
+                    this.#x -= this.#speed;
                 } else {
                     this.#moveDirection = true;
                 }
             }
             if (this.#moveDirection) {
-                if (this.#x < (this.#container.offsetWidth * 0.9)) {
-                    this.#x += this.#speed
-                }
-                else {
+                if (this.#x < maxX) {
+                    this.#x += this.#speed;
+                } else {
                     this.#moveDirection = false;
                 }
             }
-            this.#element.style.left = this.#x + "px"
+            this.#element.style.left = this.#x + "px";
         }, 20);
     }
 
@@ -86,11 +121,23 @@ class enemyShip {
     }
 
     destroy() {
-        this.#element.remove();
-        clearInterval(this.#moveInterval);
-        this.#element.classList.remove("enemy")
-        this.#element.classList.add("boom")
-    }
+        if (this.#death) {
+            return;
+        }
+        this.#death = true;
 
+        clearInterval(this.#moveInterval);
+        clearInterval(this.#shootInterval);
+
+        var i = enemies.indexOf(this);
+        if (i !== -1) {
+            enemies.splice(i, 1);
+        }
+
+        this.#element.classList.add("boom");
+        document.querySelector(".s_expload").play();
+
+        setTimeout(() => this.#element.remove(), 500);
+    }
 
 }

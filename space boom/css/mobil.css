@@ -143,14 +143,14 @@
         transform: translateX(0);
     }
 
-    .sidebar > div {
+    .sidebar>div {
         display: flex;
         align-items: center;
         gap: 15px;
         padding: 20px 0;
     }
 
-    .sidebar > div + div {
+    .sidebar>div+div {
         border-top: 2px solid rgba(255, 255, 255, 0.6);
     }
 
@@ -164,6 +164,11 @@
 }
 
 @media (max-width: 800px) {
+
+    .shop_items{
+        display: block !important;
+    }
+
     .main_menu,
     .shop_menu,
     .difficulty_menu,
@@ -291,5 +296,22 @@
 
     .sidebar h3 {
         font-size: 1.2rem;
+    }
+
+    .ability {
+        bottom: 10px;
+        padding: 6px 10px;
+    }
+
+    .ability_left {
+        left: 10px;
+    }
+
+    .ability_right {
+        right: 10px;
+    }
+
+    .ability img {
+        width: 45px;
     }
 }

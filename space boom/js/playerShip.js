@@ -5,11 +5,15 @@ class playerShip {
     #element;
     #container;
     #speed;
-    #velX = 0;         
-    #velY = 0;       
-    #friction = 0.9;  
-    #keys = {};         
+    #velX = 0;
+    #velY = 0;
+    #friction = 0.9;
+    #keys = {};
     #moveInterval;
+    #shootInterval;
+    #keydownHandler;
+    #keyupHandler;
+    #blurHandler;
 
     constructor(x, y, hp, speed, container) {
         this.setX(x);
@@ -39,6 +43,40 @@ class playerShip {
         this.#speed = speed;
     }
 
+    getElement() {
+        return this.#element;
+    }
+
+    shoot() {
+        new Bullet(
+            this.#x + this.#element.offsetWidth / 2 - 5,
+            this.#y,
+            10, 25, -1, "enemy", this.#container
+        );
+        var sound = document.querySelector(".s_laser");
+        sound.currentTime = 0;
+        sound.play();
+    }
+
+    takeDamage(dmg) {
+        this.#hp -= dmg;
+
+        if (this.#hp <= 0) {
+            if (try_revive()) {
+                document.querySelector(".s_revive").play()
+                this.#hp = 5;
+                this.updateLives();
+                return;
+            }
+            this.#hp = 0;
+            this.updateLives();
+            this.destroy();
+            gameOver();
+            return;
+        }
+        this.updateLives();
+    }
+
     createShip() {
         this.#element = document.createElement("div");
         this.#element.style.top = this.#y + "px"
@@ -47,51 +85,34 @@ class playerShip {
         this.#element.classList.add("player")
         this.#container.appendChild(this.#element)
 
-        document.addEventListener("keydown", (event) => {
+        this.#keydownHandler = (event) => {
             this.#keys[event.key] = true;
-        });
-        document.addEventListener("keyup", (event) => {
+        };
+        this.#keyupHandler = (event) => {
             this.#keys[event.key] = false;
-        });
-
-        window.addEventListener("blur", () => {
+        };
+        this.#blurHandler = () => {
             this.#keys = {};
-        });
+        };
 
-        // left click = shoot
-        this.#container.addEventListener("click", () => {
-            if (this.#element.isConnected) {   
-                this.shoot()
-            }
-        });
+        document.addEventListener("keydown", this.#keydownHandler);
+        document.addEventListener("keyup", this.#keyupHandler);
+        window.addEventListener("blur", this.#blurHandler);
 
         this.#moveInterval = setInterval(() => {
-            this.move()
+            this.move();
+            this.updateLives();
         }, 20);
+
+        this.#shootInterval = setInterval(() => this.shoot(), 500);
     }
 
-    shoot() {
-        var bullet = document.createElement("div");
-        var bulletX = this.#x + 75 - 48;  
-        var bulletY = this.#y - 60;        
+    updateLives() {
+        document.querySelector(".hud_lives").innerHTML = "";
 
-        bullet.classList.add("projectile");
-        bullet.style.left = bulletX + "px";
-        bullet.style.top = bulletY + "px";
-        this.#container.appendChild(bullet);
-
-        var sound = document.querySelector(".s_laser");
-        sound.currentTime = 0;
-        sound.play();
-
-        var bulletInterval = setInterval(() => {
-            bulletY -= 15;
-            bullet.style.top = bulletY + "px";
-            if (bulletY < -96) {
-                bullet.remove();
-                clearInterval(bulletInterval);
-            }
-        }, 20);
+        for (let i = 0; i < this.#hp; i++) {
+            document.querySelector(".hud_lives").innerHTML += "♥ ";
+        }
     }
 
     move() {
@@ -162,9 +183,13 @@ class playerShip {
 
     destroy() {
         clearInterval(this.#moveInterval);
-        this.#element.remove()
-        this.#element.classList.remove("player")
-        this.#element.classList.add("boom")
+        clearInterval(this.#shootInterval);
+        document.removeEventListener("keydown", this.#keydownHandler);
+        document.removeEventListener("keyup", this.#keyupHandler);
+        window.removeEventListener("blur", this.#blurHandler);
+
+        this.#element.classList.add("boom");
+        setTimeout(() => this.#element.remove(), 500);
     }
 
 
