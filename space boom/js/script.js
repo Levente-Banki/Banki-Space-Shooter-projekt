@@ -8,6 +8,11 @@ var gameOnInterval = null;
 var difficulty;
 var enemy_spawn_cord_y = [50, 150, 250]
 var enemy;
+var enemies = [];
+var player;
+var lives = 0;
+var wave = 0;
+var difficulty_names = ["", "Easy", "Medium", "Hard"];
 
 
 localStorage.setItem("best_score", 0);
@@ -173,13 +178,22 @@ function rule_close() {
 function gameOn() {
     difficulty = document.querySelector(".difficulty_manager .active").getAttribute("value");
     document.querySelector(".main_menu").classList.add("no_show")
+    document.querySelector(".hud").classList.remove("no_show")
+    lives = 3 + extra_life;
+    wave = 0;
     var x_cord = (gameArea.offsetWidth / 2) - (150 / 2);
     var y_cord = (gameArea.offsetHeight * 0.8);
-    var player = new playerShip(x_cord, y_cord, 50, 10, gameArea)
+    player = new playerShip(x_cord, y_cord, 50, 10, gameArea)
+    hud_refresh()
 
     if (gameOnInterval == null) {
         gameOnInterval = setInterval(() => {
-            var enemyCount = gameArea.children.length - 1;
+            hud_refresh()
+            if (lives <= 0) {
+                game_over()
+                return
+            }
+            var enemyCount = document.querySelectorAll(".enemy").length;
             if (enemyCount == 0) {
                 enemy_wave()
             }
@@ -190,12 +204,40 @@ function gameOn() {
 
 
 function enemy_wave() {
+    wave++;
     for (let i = 0; i < difficulty; i++) {
         var x_cord = Math.floor(Math.random() * ((gameArea.offsetWidth * 0.75) - (gameArea.offsetWidth * 0.25) + 1)) + (gameArea.offsetWidth * 0.25);;
         var direction = (Math.floor(Math.random() * 2) < 1 ? true : false);
         enemy = new enemyShip(x_cord, (enemy_spawn_cord_y[i] - 500), 100, 3, direction, gameArea);
+        enemies.push(enemy);
     }
 }
+
+function hud_refresh() {
+    document.querySelector(".hud_lives").innerHTML = lives;
+    document.querySelector(".hud_difficulty").innerHTML = difficulty_names[difficulty];
+    document.querySelector(".hud_wave").innerHTML = wave;
+}
+
+function game_over() {
+    clearInterval(gameOnInterval);
+    gameOnInterval = null;
+    player.destroy();
+    enemies.forEach(e => e.destroy());
+    enemies = [];
+    document.querySelectorAll(".projectile").forEach(bullet => bullet.remove());
+    document.querySelector(".hud").classList.add("no_show")
+    document.querySelector(".game_over_menu").classList.remove("no_show")
+}
+
+document.querySelector(".retry").addEventListener("click", () => {
+    document.querySelector(".game_over_menu").classList.add("no_show")
+    gameOn()
+})
+document.querySelector(".back_to_menu_from_game_over").addEventListener("click", () => {
+    document.querySelector(".game_over_menu").classList.add("no_show")
+    document.querySelector(".main_menu").classList.remove("no_show")
+})
 
 document.addEventListener("keydown", (event) => {
 
@@ -219,7 +261,6 @@ document.addEventListener("keydown", (event) => {
 
 
 refresh_web()
-
 
 document.querySelectorAll(".side_toggle").forEach(button => {
     button.addEventListener("click", () => {

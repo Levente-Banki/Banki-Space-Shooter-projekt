@@ -228,7 +228,11 @@
     
     <main>
         <section class="gameArea">
-
+            <div class="hud no_show">
+                <h3>Lives: <span class="hud_lives"></span></h3>
+                <h3>Difficulty: <span class="hud_difficulty"></span></h3>
+                <h3>Wave: <span class="hud_wave"></span></h3>
+            </div>
         </section>
     </main>
 
@@ -361,6 +365,25 @@
                     <img src="asset/options.svg" alt="">
                     <h3>Settings</h3>
                 </div>
+            </div>
+        </section>
+        <section class="game_over_menu no_show">
+            <div class="title">
+                <img src="asset/TitleLogo.png" alt="">
+                <h2>Game over</h2>
+            </div>
+            <div class="middleMenu">
+                <div class="retry hoverCursor click">
+                    <img src="asset/retry.svg" class="rightRotate" alt="">
+                    <h2>
+                        Retry
+                    </h2>
+                </div>
+            </div>
+            <div class="back_to_menu_from_game_over hoverCursor click back">
+                <h2>
+                    Back to menu
+                </h2>
             </div>
         </section>
     </footer>

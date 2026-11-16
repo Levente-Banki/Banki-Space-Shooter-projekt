@@ -169,7 +169,8 @@
     .difficulty_menu,
     .settings_menu,
     .credits_menu,
-    .rule_menu {
+    .rule_menu,
+    .game_over_menu {
         overflow-y: auto;
         justify-content: flex-start;
     }
